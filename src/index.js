@@ -34,7 +34,7 @@ app.post('/user/:user_id/deactivate-dataset', async (req, res) => {
 app.get('/user/:user_id/active', async (req, res) => {
     const userId = req.params.user_id;
     try {
-        const datasets = await userDatasetHandler.getActive(userId, datasetId);
+        const datasets = await userDatasetHandler.getActive(userId);
         res.status(200).json(datasets);
     } catch (e) {
         logger.critical(e.message, {method: '/user/activate', userId})
