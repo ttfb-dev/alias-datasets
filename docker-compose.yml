@@ -1,0 +1,19 @@
+version: "3.6"
+
+networks:
+  default:
+    external:
+      name: network
+
+volumes:
+  clickhousedb:
+
+services:
+  datasets-server-nodejs:
+    container_name: datasets-server-nodejs
+    build:
+      context: .
+      dockerfile: ./build/nodejs/Dockerfile
+    restart: "always"
+    image: registry.gitlab.com/aliasgame/datasets:node_14
+    env_file: ./build/.env.list

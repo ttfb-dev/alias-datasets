@@ -1,0 +1,18 @@
+version: "3.6"
+
+networks:
+  default:
+    external:
+      name: ttfb
+
+services:
+  datasets-server-nodejs:
+    restart: "no"
+    networks:
+      default:
+        aliases:
+          - datasets.lc
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.datasets.rule=Host(`datasets.lc`)
+      - traefik.http.routers.datasets.entrypoints=web
