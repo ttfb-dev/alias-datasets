@@ -1,5 +1,4 @@
 import prs from './prs.js';
-// import datasetHandler from './datasetHandler.js';
 
 const userDatasetHandler = {
   activate: async (userId, datasetId) => {
@@ -8,6 +7,7 @@ const userDatasetHandler = {
     await prs.setUserParam(userId, 'activated_dataset_ids', activeDatasetIds);
     return activeDatasetIds;
   },
+  
   deactivate: async (userId, datasetId) => {
     const activeDatasetIds = await userDatasetHandler.getActive(userId);
     const newActiveDatasets = activeDatasetIds.filter(
@@ -16,6 +16,7 @@ const userDatasetHandler = {
     await prs.setUserParam(userId, 'activated_dataset_ids', newActiveDatasets);
     return newActiveDatasets;
   },
+
   getActive: async (userId) => {
     let datasets = await prs.getUserParam(userId, 'activated_dataset_ids', null);
     if (datasets === null) {
@@ -23,8 +24,6 @@ const userDatasetHandler = {
       await prs.setUserParam(userId, 'activated_dataset_ids', datasets)
     }
     return datasets;
-  },
-  getAll: async (userId) => {
   },
 }
 

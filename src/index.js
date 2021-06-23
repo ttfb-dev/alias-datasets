@@ -26,7 +26,7 @@ app.post('/user/:user_id/deactivate-dataset', async (req, res) => {
         const datasets = await userDatasetHandler.deactivate(userId, datasetId);
         res.status(200).json(datasets);
     } catch (e) {
-        logger.critical('Deactivate dataset failed', {method: '/user/deactivate-dataset', userId, datasetId})
+        logger.critical(e.message, {method: '/user/deactivate-dataset', userId, datasetId})
         res.status(400).send();
     }
 })
@@ -37,7 +37,7 @@ app.get('/user/:user_id/active', async (req, res) => {
         const datasets = await userDatasetHandler.getActive(userId, datasetId);
         res.status(200).json(datasets);
     } catch (e) {
-        logger.critical('Get activate dataset failed', {method: '/user/activate', userId})
+        logger.critical(e.message, {method: '/user/activate', userId})
         res.status(400).send();
     }
 })
