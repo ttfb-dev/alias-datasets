@@ -5,9 +5,6 @@ networks:
     external:
       name: network
 
-volumes:
-  clickhousedb:
-
 services:
   datasets-server-nodejs:
     container_name: datasets-server-nodejs
