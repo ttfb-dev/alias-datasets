@@ -2,18 +2,18 @@ import prs from './prs.js';
 
 const gameDatasetHandler = {
   activate: async (roomId, datasetId) => {
-    const activeGameDatasetIds = await userDatasetHandler.getActive(roomId);
+    const activeGameDatasetIds = await gameDatasetHandler.getActive(roomId);
     activeGameDatasetIds.push(datasetId);
-    await userDatasetHandler.setActive(roomId, activeGameDatasetIds);
+    await gameDatasetHandler.setActive(roomId, activeGameDatasetIds);
     return activeGameDatasetIds;
   },
   
   deactivate: async (roomId, datasetId) => {
-    const activeGameDatasetIds = await userDatasetHandler.getActive(roomId);
+    const activeGameDatasetIds = await gameDatasetHandler.getActive(roomId);
     const filteredActiveGameDatasetIds = activeGameDatasetIds.filter(
       (id) => id !== datasetId,
     );
-    await userDatasetHandler.setActive(roomId, filteredActiveGameDatasetIds);
+    await gameDatasetHandler.setActive(roomId, filteredActiveGameDatasetIds);
     return filteredActiveGameDatasetIds;
   },
 
