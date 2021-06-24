@@ -1,11 +1,76 @@
 import express from 'express'
 import bodyParser from 'body-parser'
 import userDatasetHandler from './userDatasetHandler.js'
+import datasetHandler from './datasetHandler.js'
 import logger from './logger.js'
 
 const app = express()
 const port = 80
 app.use(bodyParser.json())
+
+app.get('/datasets', async (req, res) => {
+  try {
+    const datasets = await datasetHandler.getList();
+    res.status(200).json(datasets);
+  } catch (e) {
+      logger.critical(e.message, {method: '/datasets'})
+      res.status(400).send();
+  }
+})
+
+app.get('/datasets/type/game', async (req, res) => {
+  try {
+    const datasets = await datasetHandler.getGameList();
+    res.status(200).json(datasets);
+  } catch (e) {
+      logger.critical(e.message, {method: '/datasets/type/game'})
+      res.status(400).send();
+  }
+})
+
+app.get('/datasets/:dataset_id', async (req, res) => {
+  const datasetId = req.params.dataset_id;
+  try {
+    const dataset = await datasetHandler.getById(datasetId);
+    if (dataset) {
+      res.status(200).json(dataset);
+      return ;
+    }
+    logger.critical('Call to unknown dataset', {method: `/datasets/${datasetId}`})
+    res.status(404).send();
+  } catch (e) {
+      logger.critical(e.message, {method: `/datasets/${datasetId}`})
+      res.status(400).send();
+  }
+})
+
+app.get('/datasets/:dataset_id/words', async (req, res) => {
+  const datasetId = req.params.dataset_id;
+  try {
+    const words = await datasetHandler.getWords(datasetId);
+    if (words) {
+      res.status(200).json(words);
+      return ;
+    }
+    logger.critical('Words not found', {method: `/datasets/${datasetId}/words`})
+    res.status(404).send();
+  } catch (e) {
+      logger.critical(e.message, {method: `/datasets/${datasetId}/words`})
+      res.status(400).send();
+  }
+})
+
+app.post('/datasets/:dataset_id/words', async (req, res) => {
+  const datasetId = req.params.dataset_id;
+  const words = req.body.words;
+  try {
+    await datasetHandler.setWords(datasetId, words);
+    res.status(200).send();
+  } catch (e) {
+      logger.critical(e.message, {method: `/datasets/${datasetId}/words`})
+      res.status(400).send();
+  }
+})
 
 app.post('/user/:user_id/activate-dataset', async (req, res) => {
     const userId = req.params.user_id;
@@ -14,7 +79,7 @@ app.post('/user/:user_id/activate-dataset', async (req, res) => {
         const datasets = await userDatasetHandler.activate(userId, datasetId);
         res.status(200).json(datasets);
     } catch (e) {
-        logger.critical('Activate dataset failed', {method: '/user/activate-dataset', userId, datasetId})
+        logger.critical(e.message, {method: '/user/activate-dataset', userId, datasetId})
         res.status(400).send();
     }
 })

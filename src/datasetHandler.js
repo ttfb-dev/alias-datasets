@@ -8,11 +8,16 @@ const datasetHandler = {
       .map(mapGameDataset);
   },
 
-  setList: async (datasets) => {
-    await prs.getAppParam('word_datasets', datasets)
+  getById: async (datasetId) => {
+    return await prs.getAppParam(`word_dataset_${datasetId}`, {})
+      .map(mapGameDataset);
   },
 
-  getGame: async () => {
+  // setList: async (datasets) => {
+  //   await prs.getAppParam('word_datasets', datasets)
+  // },
+
+  getGameList: async () => {
     const datasets = await datasetHandler.getList();
     return datasets
       .filter((dataset) => dataset.type === 'game');
