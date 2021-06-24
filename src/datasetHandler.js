@@ -5,9 +5,7 @@ const datasetsCache = [];
 
 const datasetHandler = {
   getList: async () => {
-    const datasets = await prs.getAppParam('word_datasets', [])
-    logger.debug(datasets);
-    return datasets.map(datasetHandler.mapGameDataset);
+    return (await prs.getAppParam('word_datasets', [])).map(datasetHandler.mapGameDataset);
   },
 
   getById: async (datasetId) => {
