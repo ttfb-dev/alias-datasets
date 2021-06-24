@@ -9,8 +9,7 @@ const datasetHandler = {
   },
 
   getById: async (datasetId) => {
-    return await prs.getAppParam(`word_dataset_${datasetId}`, {})
-      .map(mapGameDataset);
+    return await this.getList().find(dataset => dataset.datasetId === datasetId);
   },
 
   // setList: async (datasets) => {
