@@ -1,11 +1,13 @@
+import logger from './logger.js';
 import prs from './prs.js';
 
 const datasetsCache = [];
 
 const datasetHandler = {
   getList: async () => {
-    return await prs.getAppParam('word_datasets', {})
-      .map(datasetHandler.mapGameDataset);
+    const datasets = await prs.getAppParam('word_datasets', [])
+    logger.debug(datasets);
+    return datasets.map(datasetHandler.mapGameDataset);
   },
 
   getById: async (datasetId) => {
