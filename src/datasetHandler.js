@@ -1,4 +1,3 @@
-import logger from './logger.js';
 import prs from './prs.js';
 
 const datasetsCache = [];
