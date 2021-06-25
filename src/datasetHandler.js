@@ -10,12 +10,11 @@ const datasetHandler = {
   },
 
   getById: async (datasetId) => {
-    return await datasetHandler.getList().find(dataset => dataset.datasetId === datasetId);
+    return (await datasetHandler.getList()).find(dataset => dataset.datasetId === datasetId);
   },
 
   getGameList: async () => {
-    const datasets = await datasetHandler.getList();
-    return datasets
+    return (await datasetHandler.getList())
       .filter((dataset) => dataset.type === 'game');
   },
 
