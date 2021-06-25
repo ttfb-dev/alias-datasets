@@ -10,7 +10,7 @@ const port = 80
 app.use(bodyParser.json())
 
 app.get('/room/:room_id/active', async (req, res) => {
-  const roomId = req.params.room_id;
+  const roomId = parseInt(req.params.room_id);
   try {
     const datasets = await gameDatasetHandler.getActive(roomId);
     res.status(200).json(datasets);
@@ -21,7 +21,7 @@ app.get('/room/:room_id/active', async (req, res) => {
 })
 
 app.post('/room/:room_id/activate-dataset', async (req, res) => {
-  const roomId = req.params.room_id;
+  const roomId = parseInt(req.params.room_id);
   const datasetId = req.body.datasetId;
   try {
     const datasets = await gameDatasetHandler.activate(roomId, datasetId);
@@ -33,7 +33,7 @@ app.post('/room/:room_id/activate-dataset', async (req, res) => {
 })
 
 app.post('/room/:room_id/deactivate-dataset', async (req, res) => {
-  const roomId = req.params.room_id;
+  const roomId = parseInt(req.params.room_id);
   const datasetId = req.body.datasetId;
   try {
     const datasets = await gameDatasetHandler.deactivate(roomId, datasetId);
@@ -65,7 +65,7 @@ app.get('/datasets/type/game', async (req, res) => {
 })
 
 app.get('/datasets/:dataset_id', async (req, res) => {
-  const datasetId = req.params.dataset_id;
+  const datasetId = parseInt(req.params.dataset_id);
   try {
     const dataset = await datasetHandler.getById(datasetId);
     if (dataset) {
@@ -81,7 +81,7 @@ app.get('/datasets/:dataset_id', async (req, res) => {
 })
 
 app.get('/datasets/:dataset_id/words', async (req, res) => {
-  const datasetId = req.params.dataset_id;
+  const datasetId = parseInt(req.params.dataset_id);
   try {
     const words = await datasetHandler.getWords(datasetId);
     if (words) {
@@ -97,7 +97,7 @@ app.get('/datasets/:dataset_id/words', async (req, res) => {
 })
 
 app.post('/datasets/:dataset_id/words', async (req, res) => {
-  const datasetId = req.params.dataset_id;
+  const datasetId = parseInt(req.params.dataset_id);
   const words = req.body.words;
   try {
     await datasetHandler.setWords(datasetId, words);
@@ -109,7 +109,7 @@ app.post('/datasets/:dataset_id/words', async (req, res) => {
 })
 
 app.post('/user/:user_id/activate-dataset', async (req, res) => {
-    const userId = req.params.user_id;
+    const userId = parseInt(req.params.user_id);
     const datasetId = req.body.datasetId
     try {
         const datasets = await userDatasetHandler.activate(userId, datasetId);
@@ -121,7 +121,7 @@ app.post('/user/:user_id/activate-dataset', async (req, res) => {
 })
 
 app.post('/user/:user_id/deactivate-dataset', async (req, res) => {
-    const userId = req.params.user_id;
+    const userId = parseInt(req.params.user_id);
     const datasetId = req.body.datasetId;
     try {
         const datasets = await userDatasetHandler.deactivate(userId, datasetId);
@@ -133,7 +133,7 @@ app.post('/user/:user_id/deactivate-dataset', async (req, res) => {
 })
 
 app.get('/user/:user_id/active', async (req, res) => {
-    const userId = req.params.user_id;
+    const userId = parseInt(req.params.user_id);
     try {
         const datasets = await userDatasetHandler.getActive(userId);
         res.status(200).json(datasets);

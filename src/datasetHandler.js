@@ -10,11 +10,8 @@ const datasetHandler = {
   },
 
   getById: async (datasetId) => {
-    const datasets = await datasetHandler.getList();
-    console.log(datasets);
-    const dataset = datasets.find(dataset => dataset.datasetId === datasetId);
-    console.log(dataset);
-    return dataset;
+    return (await datasetHandler.getList())
+      .find(dataset => dataset.datasetId === datasetId);
   },
 
   getGameList: async () => {
