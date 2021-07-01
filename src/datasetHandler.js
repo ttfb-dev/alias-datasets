@@ -8,6 +8,9 @@ const datasetHandler = {
       .filter(dataset => dataset.type !== 'unavailable')
       .map(datasetHandler.mapGameDataset);
   },
+  setList: async (datasets) => {
+    return (await prs.setAppParam('word_datasets', datasets));
+  },
 
   getById: async (datasetId) => {
     return (await datasetHandler.getList())
