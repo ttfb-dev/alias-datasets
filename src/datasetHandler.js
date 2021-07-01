@@ -42,7 +42,7 @@ const datasetHandler = {
       logger.debug(`clear cache ${datasetId}`);
       delete datasetsCache[key];
     }
-    wordsString = wordsArray.join(',');
+    const wordsString = wordsArray.join(',');
     await prs.setAppParam(key, wordsString);
   },
 
