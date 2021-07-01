@@ -1,3 +1,4 @@
+import logger from './logger.js';
 import prs from './prs.js';
 
 const datasetsCache = [];
@@ -25,10 +26,12 @@ const datasetHandler = {
   getWords: async (datasetId) => {
     const key = `word_dataset_${datasetId}`;
     if (datasetsCache[key]) {
+      logger.debug(`get from cache ${datasetId}: ${datasetsCache[key].length}`);
       return datasetsCache[key];
     }
     const wordsString = await prs.getAppParam(key);
     const wordsArray = wordsString.split(',');
+    logger.debug(`get from storage ${datasetId}: ${wordsArray.length}`);
     datasetsCache[key] = wordsArray;
     return wordsArray;
   },
@@ -36,6 +39,7 @@ const datasetHandler = {
   setWords: async (datasetId, wordsArray) => {
     const key = `word_dataset_${datasetId}`;
     if (datasetsCache[key]) {
+      logger.debug(`clear cache ${datasetId}`);
       delete datasetsCache[key];
     }
     wordsString = wordsArray.join(',');
