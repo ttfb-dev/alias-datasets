@@ -38,10 +38,7 @@ const datasetHandler = {
 
   setWords: async (datasetId, wordsArray) => {
     const key = `word_dataset_${datasetId}`;
-    if (datasetsCache[key]) {
-      logger.debug(`clear cache ${datasetId}`);
-      delete datasetsCache[key];
-    }
+    delete datasetsCache[key];
     const wordsString = wordsArray.join(',');
     await prs.setAppParam(key, wordsString);
   },
