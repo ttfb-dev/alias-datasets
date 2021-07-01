@@ -109,7 +109,7 @@ app.get('/datasets/:dataset_id/words', async (req, res) => {
 
 app.post('/datasets/:dataset_id/words', async (req, res) => {
   const datasetId = parseInt(req.params.dataset_id);
-  const words = req.body.words;
+  const words = req.body;
   try {
     await datasetHandler.setWords(datasetId, words);
     res.status(200).send();
