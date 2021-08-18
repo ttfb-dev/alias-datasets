@@ -10,7 +10,7 @@ const port = 80;
 app.use(bodyParser.json());
 
 app.get("/room/:room_id/active", async (req, res) => {
-  const roomId = parseInt(req.params.room_id);
+  const roomId = req.params.room_id;
   try {
     const datasets = await gameDatasetHandler.getActive(roomId);
     res.status(200).json(datasets);
@@ -21,7 +21,7 @@ app.get("/room/:room_id/active", async (req, res) => {
 });
 
 app.post("/room/:room_id/activate-dataset", async (req, res) => {
-  const roomId = parseInt(req.params.room_id);
+  const roomId = req.params.room_id;
   const datasetId = req.body.datasetId;
   try {
     const datasets = await gameDatasetHandler.activate(roomId, datasetId);
@@ -33,7 +33,7 @@ app.post("/room/:room_id/activate-dataset", async (req, res) => {
 });
 
 app.post("/room/:room_id/deactivate-dataset", async (req, res) => {
-  const roomId = parseInt(req.params.room_id);
+  const roomId = req.params.room_id;
   const datasetId = req.body.datasetId;
   try {
     const datasets = await gameDatasetHandler.deactivate(roomId, datasetId);
