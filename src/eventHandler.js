@@ -29,6 +29,7 @@ const processor = {
     const finishGame = await prs.getUserParam(userId, 'halloween_2021_finish_game', false);
     const postReview = await prs.getUserParam(userId, 'halloween_2021_post_review', false);
     const eventDone  = await prs.getUserParam(userId, 'halloween_2021_event_done',  false);
+    console.log({userId, finishGame, postReview, eventDone});
     if (finishGame && postReview && !eventDone) {
       await prs.setUserParam(userId, 'halloween_2021_event_done',  true);
       await userDatasetHandler.addFixed(userId, halloweenDatastId);
