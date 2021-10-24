@@ -2,6 +2,7 @@ import express from "express"
 import userDatasetHandler from "./userDatasetHandler.js"
 import gameDatasetHandler from "./gameDatasetHandler.js"
 import datasetHandler from "./datasetHandler.js"
+import eventHandler from "./eventHandler.js"
 import logger from "./logger.js"
 
 const app = express()
@@ -187,6 +188,22 @@ app.post("/user/:user_id/fix-dataset", async (req, res) => {
     res.status(400).send();
   }
 });
+
+app.post("/event", async (req, res) => {
+  const event = req.body;
+  try {
+    await eventHandler.process(event);
+    res.status(200).send();
+  } catch (e) {
+    logger.critical(e.message, {
+      path: `/event`,
+      userId,
+      datasetId,
+    });
+    res.status(400).send();
+  }
+});
+
 
 app.get("/user/:user_id/fixed", async (req, res) => {
   const userId = parseInt(req.params.user_id, 10);
