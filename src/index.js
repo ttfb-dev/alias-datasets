@@ -172,6 +172,33 @@ app.get("/user/:user_id/active", async (req, res) => {
   }
 });
 
+app.post("/user/:user_id/fix-dataset", async (req, res) => {
+  const userId = parseInt(req.params.user_id, 10);
+  const datasetId = req.body.datasetId;
+  try {
+    const datasets = await userDatasetHandler.addFixed(userId, datasetId);
+    res.status(200).json(datasets);
+  } catch (e) {
+    logger.critical(e.message, {
+      path: `/user/${user}/fix-dataset`,
+      userId,
+      datasetId,
+    });
+    res.status(400).send();
+  }
+});
+
+app.get("/user/:user_id/fixed", async (req, res) => {
+  const userId = parseInt(req.params.user_id, 10);
+  try {
+    const datasets = await userDatasetHandler.getFixed(userId);
+    res.status(200).json(datasets);
+  } catch (e) {
+    logger.critical(e.message, { path: `/user/${user}/fixed`, userId });
+    res.status(400).send();
+  }
+});
+
 app.get("/", async (req, res) => {
   res.status(200).send();
 });
