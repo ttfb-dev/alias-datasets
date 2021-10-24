@@ -10,7 +10,7 @@
   },
   "type": "module",
   "dependencies": {
-    "@ttfb/aliasgame": "^0.0.38",
+    "@ttfb/aliasgame": "^0.0.61",
     "express": "4.17.1"
   }
 }

@@ -24,7 +24,7 @@ const userDatasetHandler = {
   },
 
   getFixed: async (userId) => {
-    await prs.getUserParam(userId, 'fixed_dataset_ids', []);
+    return await prs.getUserParam(userId, 'fixed_dataset_ids', []);
   },
 
   getActive: async (userId) => {
