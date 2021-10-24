@@ -189,6 +189,17 @@ app.post("/user/:user_id/fix-dataset", async (req, res) => {
   }
 });
 
+app.get("/user/:user_id/fixed", async (req, res) => {
+  const userId = parseInt(req.params.user_id, 10);
+  try {
+    const datasets = await userDatasetHandler.getFixed(userId);
+    res.status(200).json(datasets);
+  } catch (e) {
+    logger.critical(e.message, { path: `/user/${user}/fixed`, userId });
+    res.status(400).send();
+  }
+});
+
 app.post("/event", async (req, res) => {
   const event = req.body;
   try {
@@ -200,18 +211,6 @@ app.post("/event", async (req, res) => {
       userId,
       datasetId,
     });
-    res.status(400).send();
-  }
-});
-
-
-app.get("/user/:user_id/fixed", async (req, res) => {
-  const userId = parseInt(req.params.user_id, 10);
-  try {
-    const datasets = await userDatasetHandler.getFixed(userId);
-    res.status(200).json(datasets);
-  } catch (e) {
-    logger.critical(e.message, { path: `/user/${user}/fixed`, userId });
     res.status(400).send();
   }
 });
