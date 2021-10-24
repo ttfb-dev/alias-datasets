@@ -1,5 +1,5 @@
 import prs from './prs.js';
-import logger from './logger';
+import logger from './logger.js';
 
 const eventHandler = {
   process: async (event) => {
