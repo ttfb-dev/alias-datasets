@@ -1,4 +1,5 @@
 import prs from './prs.js';
+import datasetHandler from './datasetHandler.js'
 
 const userDatasetHandler = {
   activate: async (userId, datasetId) => {

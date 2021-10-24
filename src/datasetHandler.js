@@ -31,7 +31,6 @@ const datasetHandler = {
     }
     const wordsString = await prs.getAppParam(key);
     const wordsArray = wordsString.split(',');
-    logger.debug(`get from storage ${datasetId}: ${wordsArray.length}`);
     datasetsCache[key] = wordsArray;
     return wordsArray;
   },

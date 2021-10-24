@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@ttfb/aliasgame@^0.0.33":
-  version "0.0.33"
-  resolved "https://registry.yarnpkg.com/@ttfb/aliasgame/-/aliasgame-0.0.33.tgz#d435e9c352951aabbfa050bde8820295e3ac5036"
-  integrity sha512-Cx/aYVbbr00tBkIlg13rFUgq6E4oU8LcBC+OeJdTw00lVw5G3T2Che8pzg0CTN7gQYnlr3D1FJsBmkg3BK/ruw==
+"@ttfb/aliasgame@^0.0.38":
+  version "0.0.38"
+  resolved "https://registry.yarnpkg.com/@ttfb/aliasgame/-/aliasgame-0.0.38.tgz#9a23e9a86ffab12afb4c4c4f1d2d249dfbfdc8ae"
+  integrity sha512-gIxWAfgHGxLowjDaHsdEwXRoFXeP5vUskUAp6s4Z6vn30pbtA8+bI+2w567ndjTBM+Fi/74YJiYZzMfMjeNTtA==
   dependencies:
     node-fetch "^2.6.1"
 
@@ -22,7 +22,7 @@ array-flatten@1.1.1:
   resolved "https://registry.yarnpkg.com/array-flatten/-/array-flatten-1.1.1.tgz#9a5f699051b1e7073328f2a008968b64ea2955d2"
   integrity sha1-ml9pkFGx5wczKPKgCJaLZOopVdI=
 
-body-parser@1.19.0, body-parser@^1.19.0:
+body-parser@1.19.0:
   version "1.19.0"
   resolved "https://registry.yarnpkg.com/body-parser/-/body-parser-1.19.0.tgz#96b2709e57c9c4e09a6fd66a8fd979844f69f08a"
   integrity sha512-dhEPs72UPbDnAQJ9ZKMNTP6ptJaionhP5cBb541nXPlW60Jepo9RV/a4fX4XWW9CuFNK22krhrj1+rgzifNCsw==

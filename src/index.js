@@ -1,5 +1,4 @@
 import express from 'express'
-import bodyParser from 'body-parser'
 import userDatasetHandler from './userDatasetHandler.js'
 import gameDatasetHandler from './gameDatasetHandler.js'
 import datasetHandler from './datasetHandler.js'
@@ -7,7 +6,7 @@ import logger from './logger.js'
 
 const app = express()
 const port = 80
-app.use(bodyParser.json())
+app.use(express.json())
 
 app.get('/room/:room_id/active', async (req, res) => {
   const roomId = parseInt(req.params.room_id);
