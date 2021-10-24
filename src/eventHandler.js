@@ -1,5 +1,5 @@
 import prs from './prs.js';
-import { Event, eventBus, EVENTS } from './events';
+import { Event, eventBus, EVENTS } from './events.js';
 import logger from './logger.js';
 import userDatasetHandler from './userDatasetHandler.js';
 
