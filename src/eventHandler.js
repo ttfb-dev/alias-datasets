@@ -5,7 +5,7 @@ import userDatasetHandler from './userDatasetHandler.js';
 
 const eventHandler = {
   process: async (event) => {
-    switch (event.name) {
+    switch (event._name) {
       case EVENTS.USER_PLAYS_GAME_HALLOWEEN_2021.name: 
         await prs.setUserParam(event.userId, 'halloween_2021_finish_game', true);
         await processor.halloween21EventCheck(event.userId);
